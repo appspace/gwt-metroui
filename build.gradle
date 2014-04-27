@@ -1,0 +1,39 @@
+apply plugin: 'java'
+apply plugin: 'gwt-base'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+group = 'ca.appspace'
+version = '1.0'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+
+repositories { 
+	mavenCentral()
+	mavenLocal()
+}
+
+gwt {
+	gwtVersion='2.6.0'
+}
+
+jar.doFirst{
+	sourceSets.main.java.srcDirs.each {
+	   from it
+	}
+}
+
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			url 'https://github.com/steffenschaefer/gwt-gradle-plugin/raw/maven-repo/'
+		}
+		jcenter()
+	}
+
+	dependencies {
+		classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.4'
+	}
+}
