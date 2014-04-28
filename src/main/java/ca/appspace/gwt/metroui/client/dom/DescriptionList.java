@@ -4,7 +4,7 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.ComplexPanel;
 
-public class HorizontalDescription extends ComplexPanel {
+public class DescriptionList extends ComplexPanel {
 	
 	private final static String ROOT_TAG_NAME = "dl";
 	private final static String TERM_TAG_NAME = "dt";
@@ -13,9 +13,15 @@ public class HorizontalDescription extends ComplexPanel {
 
 	private final Element _rootElement;
 	
-	public HorizontalDescription() {
+	public DescriptionList() {
+		this(false);
+	}
+	
+	public DescriptionList(boolean horizontal) {
 		_rootElement = Document.get().createElement(ROOT_TAG_NAME);
-		_rootElement.setClassName(CLASS_NAME);
+		if (horizontal) {
+			_rootElement.setClassName(CLASS_NAME);
+		}
 		setElement(_rootElement);
 	}
 	
