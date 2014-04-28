@@ -6,6 +6,17 @@ public enum ColorScheme {
 	LIME("lime"), 
 	GREEN("green"), 
 	EMERALD("emerald"), 
+	TEAL("teal"),
+	CYAN("cyan"), 
+	COBALT("cobalt"),
+	INDIGO("indigo"), 
+	VIOLET("violet"),
+	PINK("pink"),
+	MAGENTA("magenta"),
+	CRIMSON("crimson"),
+	RED("red"),
+	ORANGE("orange"), 
+	AMBER("amber"),
 	DARK("dark"), 
 	TRANSPARENT("transparent");
 	
