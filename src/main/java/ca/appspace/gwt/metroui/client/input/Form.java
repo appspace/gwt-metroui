@@ -1,11 +1,11 @@
-package ca.appspace.gwt.metroui.client.dom;
+package ca.appspace.gwt.metroui.client.input;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.LabelElement;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBoxBase;
 import com.google.gwt.user.client.ui.Widget;
@@ -15,7 +15,7 @@ public class Form extends ComplexPanel {
 	private final static String TAG_NAME = "form";
 	private final static String FS_TAG_NAME = "fieldset";
 	private final static String LEGEND_TAG_NAME = "legend";
-	private final static String LABEL_TAG_NAME = "label";
+	//private final static String LABEL_TAG_NAME = "label";
 
 	private final Element _rootElement;
 	private FieldSet _currentFieldset;
@@ -42,7 +42,7 @@ public class Form extends ComplexPanel {
 	}
 
 	public void addField(String label, TextBoxBase textBox) {
-		Element labelElem = Document.get().createElement(LABEL_TAG_NAME);
+		LabelElement labelElem = Document.get().createLabelElement();
 		labelElem.setInnerHTML(label);
 		if (_currentFieldset==null) {
 			_rootElement.appendChild(labelElem);
@@ -70,7 +70,16 @@ public class Form extends ComplexPanel {
 		}
 	}
 
-	class FieldSet extends ComplexPanel {
+	public void addField(CheckBox checkbox) {
+		if (_currentFieldset==null) {
+			Form.this.add(checkbox, _rootElement);
+		} else {
+			_currentFieldset.add(checkbox);
+		}
+
+	}
+	
+	private static class FieldSet extends ComplexPanel {
 
 		private final Element _fsElement;
 		
