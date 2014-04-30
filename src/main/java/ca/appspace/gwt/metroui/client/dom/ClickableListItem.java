@@ -1,6 +1,7 @@
 package ca.appspace.gwt.metroui.client.dom;
 
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.ui.Anchor;
 
 public class ClickableListItem extends ListItemElement {
@@ -14,6 +15,14 @@ public class ClickableListItem extends ListItemElement {
 		add(_anchor);
 	}
 
+	public ClickableListItem(SafeHtml safeHtml) {
+		_anchor = new Anchor(safeHtml);
+		_anchor.setHref("javascript:;");
+		_anchor.setTabIndex(-1);
+		add(_anchor);
+	}
+
+	
 	public void addClickHandler(ClickHandler clickHandler) {
 		_anchor.addClickHandler(clickHandler);
 	}
