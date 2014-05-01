@@ -5,6 +5,8 @@ import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.dom.client.LabelElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.dom.client.Text;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -16,7 +18,7 @@ public class CheckBox extends HTMLPanel implements HasName, HasValue<Boolean> {
 	
 	private final Text _labelTextElement;
 	private final InputElement _inputElement;
-
+	
 	public CheckBox() {
 		super("");
 		setStyleName("input-control checkbox");
@@ -37,7 +39,7 @@ public class CheckBox extends HTMLPanel implements HasName, HasValue<Boolean> {
 	
 	public CheckBox(String label) {
 		this();
-		_labelTextElement.setData(label);
+		setText(label);
 	}
 
 	@Override
@@ -51,9 +53,18 @@ public class CheckBox extends HTMLPanel implements HasName, HasValue<Boolean> {
 	}
 
 	@Override
-	public HandlerRegistration addValueChangeHandler(
-			ValueChangeHandler<Boolean> handler) {
-	    return addHandler(handler, ValueChangeEvent.getType());
+	public HandlerRegistration addValueChangeHandler(final ValueChangeHandler<Boolean> handler) {
+		return super.addDomHandler(new ClickHandler() {
+			private Boolean oldValue = null;
+			@Override
+			public void onClick(ClickEvent event) {
+				Boolean newValue = getValue();
+				if (oldValue!=null && !oldValue.equals(newValue)) {
+					handler.onValueChange(new CheckboxValueChangeEvent(getValue()));
+				}
+				oldValue = newValue;
+			}
+		}, ClickEvent.getType());
 	}
 
 	@Override
@@ -84,5 +95,17 @@ public class CheckBox extends HTMLPanel implements HasName, HasValue<Boolean> {
 		if (fireEvents) {
 			ValueChangeEvent.fire(this, value);
 		}
+	}
+
+	public void setText(String label) {
+		_labelTextElement.setData(label);
+	}
+	
+	private static class CheckboxValueChangeEvent extends ValueChangeEvent<Boolean> {
+
+		protected CheckboxValueChangeEvent(Boolean value) {
+			super(value);
+		}
+		
 	}
 }
