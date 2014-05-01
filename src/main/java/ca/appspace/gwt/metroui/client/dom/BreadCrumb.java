@@ -27,7 +27,7 @@ public class BreadCrumb extends ComplexPanel {
 		ClickableListItem item = new ClickableListItem(
 				new SafeHtmlBuilder().appendHtmlConstant("<i class='icon-home'>").appendHtmlConstant("</i>").toSafeHtml()
 				);
-		item.addClickHandler(clickHandler);
+		if (clickHandler!=null) item.addClickHandler(clickHandler);
 		_content.add(item);
 		return this;
 	}
