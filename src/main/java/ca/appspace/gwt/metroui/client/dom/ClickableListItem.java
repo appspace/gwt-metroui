@@ -32,4 +32,8 @@ public class ClickableListItem extends ListItemElement {
 	public void setText(String text) {
 		_anchor.setText(text == null ? "" : text); 
 	}
+
+	public void setHref(String href) {
+		_anchor.setHref(href);
+	}
 }
