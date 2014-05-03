@@ -49,7 +49,7 @@ public class TabControl extends HTMLPanel {
 			@Override
 			public void onAttachOrDetach(AttachEvent event) {
 				if (event.isAttached()) {
-					MetroUI.initTabControl(TabControl.this);
+					MetroUI.init(TabControl.this);
 				}
 			}
 		});

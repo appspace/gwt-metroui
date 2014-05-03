@@ -1,10 +1,12 @@
 package ca.appspace.gwt.metroui.client.navigation;
 
+import ca.appspace.gwt.metroui.client.MetroUI;
 import ca.appspace.gwt.metroui.client.dom.NavElement;
 import ca.appspace.gwt.metroui.client.input.InputControl;
 import ca.appspace.gwt.metroui.client.styles.GlobalStyle;
 import ca.appspace.gwt.metroui.client.styles.Icon;
 
+import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.ui.Anchor;
@@ -34,6 +36,12 @@ public class NavBar extends NavElement {
 		_content = new NavElement();
 		_content.setStyleName(CONTENT_CLASS_NAME);
 		super.add(_content);
+		this.addAttachHandler(new AttachEvent.Handler() {
+			@Override
+			public void onAttachOrDetach(AttachEvent event) {
+				MetroUI.init(NavBar.this);
+			}
+		});
 	}
 
 	public NavBar(GlobalStyle style) {
@@ -82,7 +90,7 @@ public class NavBar extends NavElement {
 	}
 
 	private void addMenuItem(NavBarMenu item) {
-		
+		_content.add(item);
 	}
 
 	@Override
