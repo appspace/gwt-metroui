@@ -37,8 +37,5 @@ public class NavBarMenu extends HTMLPanel {
 	
 	private NavBarMenu(Widget widget) {
 		super("");
-		
-		
-		
 	}
 }

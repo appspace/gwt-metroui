@@ -1,8 +1,10 @@
 package ca.appspace.gwt.metroui.client.navigation;
 
+import ca.appspace.gwt.metroui.client.MetroUI;
 import ca.appspace.gwt.metroui.client.dom.ClickableListItem;
 import ca.appspace.gwt.metroui.client.dom.UnorderedListElement;
 
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -31,6 +33,7 @@ public class TabControl extends HTMLPanel {
 		super("");
 		Element styleElement = getElement();
 		styleElement.setClassName(MAIN_STYLE_CLASS);
+		styleElement.setAttribute("data-role", "tab-control");
 		if (effect!=null) {
 			styleElement.setAttribute(EFFECT_ATTR_NAME, effect.asHtmlVal());
 		}
@@ -46,7 +49,7 @@ public class TabControl extends HTMLPanel {
 			@Override
 			public void onAttachOrDetach(AttachEvent event) {
 				if (event.isAttached()) {
-					init();
+					MetroUI.initTabControl(TabControl.this);
 				}
 			}
 		});
@@ -73,12 +76,13 @@ public class TabControl extends HTMLPanel {
 		tabWrapper.add(tabContent);
 		tabWrapper.addStyleName(FRAME_STYLE_NAME);
 		_framesPanel.add(tabWrapper);
+		
+		if (TabControl.this.isAttached()) {	//If the tab control is already in DOM, reinitialize
+			GWT.log("Tab added to TabControl after it has already been attached to DOM. Currently, this does not work well");
+		}
+		
 		return myIndex;
 	}
-
-	private native void init() /*-{
-		$wnd.$('.tab-control').tabcontrol();
-	}-*/;
 
 	public static interface TabActivatedHandler {
 		void onTabActivated(int myIndex);	
