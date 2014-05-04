@@ -1,5 +1,7 @@
 package ca.appspace.gwt.metroui.client.input;
 
+import ca.appspace.gwt.metroui.client.HtmlValueEnum;
+
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.ButtonBase;
@@ -67,7 +69,7 @@ public class PushButton extends ButtonBase {
 		}
 	}
 	
-	public static enum Style {
+	public static enum Style implements HtmlValueEnum {
 		DEFAULT("default"), 
 		PRIMARY("primary"),
 		INFO("info"),
@@ -82,7 +84,7 @@ public class PushButton extends ButtonBase {
 		private Style(String value) {
 			_htmlValue = value;
 		}
-		
+		@Override
 		public String asHtmlValue() {
 			return _htmlValue;
 		}

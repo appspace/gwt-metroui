@@ -1,5 +1,6 @@
 package ca.appspace.gwt.metroui.client.input;
 
+
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.dom.client.LabelElement;
@@ -20,8 +21,12 @@ public class CheckBox extends HTMLPanel implements HasName, HasValue<Boolean> {
 	private final InputElement _inputElement;
 	
 	public CheckBox() {
+		this(CheckboxType.CHECKBOX);
+	}
+	
+	public CheckBox(CheckboxType type) {
 		super("");
-		setStyleName("input-control checkbox");
+		setType(type);
 		getElement().setAttribute("data-role", "input-control");
 		
 		LabelElement labelElem = Document.get().createLabelElement();
@@ -36,12 +41,17 @@ public class CheckBox extends HTMLPanel implements HasName, HasValue<Boolean> {
 		labelElem.appendChild(_labelTextElement);
 		getElement().appendChild(labelElem);
 	}
-	
+
 	public CheckBox(String label) {
-		this();
+		this(CheckboxType.CHECKBOX);
 		setText(label);
 	}
 
+	public CheckBox setType(CheckboxType type) {
+		setStyleName("input-control "+type.asHtmlValue());
+		return this;
+	}
+	
 	@Override
 	public void setName(String name) {
 		this.setName(name);
@@ -102,10 +112,8 @@ public class CheckBox extends HTMLPanel implements HasName, HasValue<Boolean> {
 	}
 	
 	private static class CheckboxValueChangeEvent extends ValueChangeEvent<Boolean> {
-
 		protected CheckboxValueChangeEvent(Boolean value) {
 			super(value);
 		}
-		
 	}
 }

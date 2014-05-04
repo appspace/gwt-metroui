@@ -1,6 +1,8 @@
 package ca.appspace.gwt.metroui.client.styles;
 
-public enum Icon {
+import ca.appspace.gwt.metroui.client.HtmlValueEnum;
+
+public enum Icon implements HtmlValueEnum {
 
 	GRID_VIEW("icon-grid-view");
 	
@@ -9,7 +11,7 @@ public enum Icon {
 	private Icon(String val) {
 		_htmlValue = val;
 	}
-	
+	@Override
 	public String asHtmlValue() {
 		return _htmlValue;
 	}

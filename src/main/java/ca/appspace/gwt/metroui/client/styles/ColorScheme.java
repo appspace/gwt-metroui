@@ -1,6 +1,8 @@
 package ca.appspace.gwt.metroui.client.styles;
 
-public enum ColorScheme {
+import ca.appspace.gwt.metroui.client.HtmlValueEnum;
+
+public enum ColorScheme implements HtmlValueEnum {
 	BLACK("black"),
 	WHITE("white"), 
 	LIME("lime"), 
@@ -25,7 +27,7 @@ public enum ColorScheme {
 	private ColorScheme(String val) {
 		_htmlValue = val;
 	}
-	
+	@Override
 	public String asHtmlValue() {
 		return _htmlValue;
 	}

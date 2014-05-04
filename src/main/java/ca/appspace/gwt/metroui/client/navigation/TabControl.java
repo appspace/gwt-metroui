@@ -1,5 +1,6 @@
 package ca.appspace.gwt.metroui.client.navigation;
 
+import ca.appspace.gwt.metroui.client.HtmlValueEnum;
 import ca.appspace.gwt.metroui.client.MetroUI;
 import ca.appspace.gwt.metroui.client.dom.ClickableListItem;
 import ca.appspace.gwt.metroui.client.dom.UnorderedListElement;
@@ -35,7 +36,7 @@ public class TabControl extends HTMLPanel {
 		styleElement.setClassName(MAIN_STYLE_CLASS);
 		styleElement.setAttribute("data-role", "tab-control");
 		if (effect!=null) {
-			styleElement.setAttribute(EFFECT_ATTR_NAME, effect.asHtmlVal());
+			styleElement.setAttribute(EFFECT_ATTR_NAME, effect.asHtmlValue());
 		}
 		_tabPanel = new UnorderedListElement();
 		_tabPanel.setStyleName(TAB_PANEL_STYLE_CLASS);
@@ -88,7 +89,7 @@ public class TabControl extends HTMLPanel {
 		void onTabActivated(int myIndex);	
 	}
 	
-	public static enum Effect {
+	public static enum Effect implements HtmlValueEnum {
 		SLIDE("slide"),
 		FADE("fade");
 		
@@ -97,8 +98,8 @@ public class TabControl extends HTMLPanel {
 		private Effect(String val) {
 			_htmlVal = val;
 		}
-		
-		public  String asHtmlVal() {
+		@Override
+		public String asHtmlValue() {
 			return _htmlVal;
 		}
 	}

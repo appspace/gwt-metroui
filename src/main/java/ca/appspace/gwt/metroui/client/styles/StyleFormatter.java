@@ -7,7 +7,7 @@ public class StyleFormatter {
 		if (style.getType()==null) {
 			sb.append(style.getScheme().asHtmlValue());
 		} else {
-			sb.append(style.getType().asHTMLValue()+"-"+style.getScheme().asHtmlValue());
+			sb.append(style.getType().asHtmlValue()+"-"+style.getScheme().asHtmlValue());
 		}
 		return sb.toString();
 	}

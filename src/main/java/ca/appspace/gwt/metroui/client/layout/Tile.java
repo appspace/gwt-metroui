@@ -12,20 +12,24 @@ public class Tile extends HTMLPanel implements StyledElement {
 	private final Element _styleElement;
 	private final static String SELECTED_STYLE_NAME = "selected";
 	private HTMLPanel _contentPanel;
-	
-	public Tile(TileSize size, GlobalStyle style) {
-		this(size);
-		setStyle(style);
+
+	public Tile(String val) {
+		super("");
+		addStyleName("tile");
+		_styleElement = getStyleElement();
 		_contentPanel = new HTMLPanel("");
 		_contentPanel.setStyleName("tile-content");
 		add(_contentPanel);
 	}
 	
+	public Tile(TileSize size, GlobalStyle style) {
+		this(size);
+		setStyle(style);
+	}
+	
 	public Tile(TileSize size) {
-		super("");
-		addStyleName("tile");
+		this("");
 		addStyleName(size.asHtmlValue());
-		_styleElement = getStyleElement();
 	}
 	
 	public Tile() {

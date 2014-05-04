@@ -1,6 +1,8 @@
 package ca.appspace.gwt.metroui.client.styles;
 
-public enum StyleType {
+import ca.appspace.gwt.metroui.client.HtmlValueEnum;
+
+public enum StyleType implements HtmlValueEnum {
 
 	BACKGROUND("bg"), 
 	FOREGROUND("fg"), 
@@ -12,8 +14,8 @@ public enum StyleType {
 	private StyleType(String val) {
 		_htmlValue = val;
 	}
-	
-	public String asHTMLValue() {
+	@Override
+	public String asHtmlValue() {
 		return _htmlValue;
 	}
 }
