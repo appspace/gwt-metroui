@@ -9,6 +9,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class Row extends HTMLPanel implements StyledElement {
 
+	private Grid _grid;
+
 	public Row(String html) {
 		super(html);
 		setStyleName("row");
@@ -24,7 +26,7 @@ public class Row extends HTMLPanel implements StyledElement {
 		}
 		Cell cell = new Cell(span);
 		cell.add(content);
-		add(cell);
+		Row.this.add(cell);
 		return Row.this;
 	}
 
@@ -40,11 +42,19 @@ public class Row extends HTMLPanel implements StyledElement {
 	}
 	
 	public Grid endRow() {
-		return (Grid) getParent();
+		if (_grid!=null) {
+			return _grid;
+		}
+		Widget parent = this.getParent();
+		return (Grid) parent;
 	}
 
 	@Override
 	public void setStyle(GlobalStyle style) {
 		getStyleElement().addClassName(StyleFormatter.getHTMLValue(style));
+	}
+
+	public void setGrid(Grid grid) {
+		_grid = grid;
 	}
 }

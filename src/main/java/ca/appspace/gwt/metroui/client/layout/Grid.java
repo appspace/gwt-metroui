@@ -16,11 +16,14 @@ public class Grid extends HTMLPanel {
 
 	public Row startRow() {
 		Row row = new Row();
+		row.setGrid(this);
+		Grid.this.add(row);
 		return row;
 	}
 	
 	public Grid addRow(Row row) {
-		add(row);
+		row.setGrid(Grid.this);
+		Grid.this.add(row);
 		return Grid.this;
 	}
 	

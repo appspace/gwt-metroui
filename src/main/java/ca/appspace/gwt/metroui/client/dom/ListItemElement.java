@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class ListItemElement extends ComplexPanel implements HasText {
 
 	private static final String TAG_NAME = "LI";
+	private static final String DISABLED_STYLE = "disabled";
 
 	public ListItemElement() {
 		setElement(Document.get().createElement(TAG_NAME));
@@ -18,7 +19,16 @@ public class ListItemElement extends ComplexPanel implements HasText {
 		this();
 		setText(text);
 	}
-
+	
+	public ListItemElement setDisabled(boolean disabled) {
+		if (disabled) {
+			addStyleName(DISABLED_STYLE);
+		} else {
+			removeStyleName(DISABLED_STYLE);
+		}
+		return this;
+	}
+	
     public void add(Widget w) {
         super.add(w, getElement());
     }

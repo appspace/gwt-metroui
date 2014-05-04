@@ -1,10 +1,11 @@
 package ca.appspace.gwt.metroui.client.navigation;
 
-import ca.appspace.gwt.metroui.client.dom.ClickableListItem;
+import ca.appspace.gwt.metroui.client.dom.ListItemElement;
 import ca.appspace.gwt.metroui.client.dom.UnorderedListElement;
 
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 public class NavBarMenu extends HTMLPanel {
 
@@ -28,8 +29,24 @@ public class NavBarMenu extends HTMLPanel {
 		add(_innerContent);
 	}
 
-	public NavBarMenu addMenuItem(ClickableListItem item) {
+	public NavBarMenu addMenuItem(ListItemElement item) {
 		_innerContent.add(item);
+		return NavBarMenu.this;
+	}
+	
+	@Override
+	public void add(Widget widget) {
+		if (widget instanceof ListItemElement) {
+			addMenuItem((ListItemElement) widget);
+		} else {
+			super.add(widget);
+		}
+	}
+	
+	public NavBarMenu addDivider() {
+		ListItemElement divider = new ListItemElement();
+		divider.setStyleName("divider");
+		_innerContent.add(divider);
 		return NavBarMenu.this;
 	}
 }

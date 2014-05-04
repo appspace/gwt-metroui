@@ -8,6 +8,8 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 
 public class Cell extends HTMLPanel implements StyledElement {
 
+	private int _span;
+
 	public Cell(int span) {
 		this("");
 		setSpan(span);
@@ -22,11 +24,12 @@ public class Cell extends HTMLPanel implements StyledElement {
 	}
 
 	public void setSpan(int span) {
-		setStyleName("span"+span);
+		_span = span;
+		setStyleName("span"+_span);
 	}
 
 	public void setStyle(GlobalStyle style) {
-		setStyleName(StyleFormatter.getHTMLValue(style));
+		setStyleName("span"+_span+" "+StyleFormatter.getHTMLValue(style));
 	}
 
 }

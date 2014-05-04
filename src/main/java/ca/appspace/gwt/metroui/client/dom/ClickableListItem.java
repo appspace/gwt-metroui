@@ -26,7 +26,6 @@ public class ClickableListItem extends ListItemElement {
 	public void addClickHandler(ClickHandler clickHandler) {
 		_anchor.addClickHandler(clickHandler);
 	}
-	
 
 	@Override
 	public void setText(String text) {
