@@ -1,5 +1,6 @@
 package ca.appspace.gwt.metroui.client;
 
+import ca.appspace.gwt.metroui.client.input.Calendar;
 import ca.appspace.gwt.metroui.client.navigation.NavBar;
 import ca.appspace.gwt.metroui.client.navigation.TabControl;
 
@@ -11,6 +12,10 @@ public class MetroUI {
 		$wnd.$.Metro.initAll();
 	}-*/;
 
+	public static void init(Calendar widget) {
+		initCalendar(widget.getElement().getParentElement());
+	}
+	
 	public static void init(TabControl widget) {
 		initTabControl(widget.getElement().getParentElement());
 	}
@@ -27,4 +32,8 @@ public class MetroUI {
 		$wnd.$.Metro.initDropdowns(elem);
 	}-*/;
 
+	private static native void initCalendar(Element elem) /*-{
+		$wnd.$.Metro.initCalendars(elem);
+	}-*/;
+	
 }
